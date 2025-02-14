@@ -41,6 +41,13 @@ class ChangeHandler(FileSystemEventHandler):
             commit_message = f"Added: {os.path.basename(event.src_path)}"
             repo.index.commit(commit_message)
             print(f"Committed: {commit_message}")
+
+            # 푸시 (upstream 설정 포함)
+            repo.git.push('origin', 'main')  # 원격 브랜치 설정 포함
+            print(f"Pushed: {commit_message}")
+
+        except Exception as e:
+            print(f"Error occurred: {e}")
         finally:
             # 커밋이 끝난 후 대기
             time.sleep(600)  # 10분 대기
