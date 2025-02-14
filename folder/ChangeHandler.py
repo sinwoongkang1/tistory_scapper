@@ -43,7 +43,7 @@ class ChangeHandler(FileSystemEventHandler):
             print(f"Committed: {commit_message}")
         finally:
             # 커밋이 끝난 후 대기
-            time.sleep(10)  # 10초 대기
+            time.sleep(600)  # 10분 대기
             self.is_committing = False
 
 if __name__ == "__main__":
