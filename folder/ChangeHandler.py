@@ -17,7 +17,11 @@ class ChangeHandler(FileSystemEventHandler):
             'index.lock'
         ]
 
-        # 파일 이름이 무시 목록에 포함되어 있는지 확인
+        # Git 관련 임시 파일 무시
+        if any(event.src_path.endswith(ext) for ext in ['.lock', '.tmp']):
+            return
+
+        # 무시 목록에 포함되어 있는지 확인
         if os.path.basename(event.src_path) in ignored_files:
             return
 
@@ -29,6 +33,7 @@ class ChangeHandler(FileSystemEventHandler):
         commit_message = f"Added: {os.path.basename(event.src_path)}"
         repo.index.commit(commit_message)
         print(f"Committed: {commit_message}")
+
 
 
 if __name__ == "__main__":
