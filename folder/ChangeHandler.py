@@ -21,7 +21,7 @@ class ChangeHandler(FileSystemEventHandler):
         if os.path.basename(event.src_path) in ignored_files:
             return
 
-        repo_path = '/home/kang/문서/bolg_scrap/tistory_scapper'  # 올바른 Git 저장소 경로
+        repo_path = '/home/kang/문서/bolg_scrap'  # 올바른 Git 저장소 경로
         repo = git.Repo(repo_path)
 
         # 변경 사항 추가 및 커밋
