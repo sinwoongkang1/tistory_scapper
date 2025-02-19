@@ -16,7 +16,7 @@ def scrape_blog_to_md(url, filename):
         print("기사 내용을 찾을 수 없습니다.")
         return
 
-    filepath = f"/home/kang/문서/bolg_scrap/article/{filename}"
+    filepath = f"/home/ec2-user/blogScrapper/article/{filename}"
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(f"# {title}\n\n")
         f.write(content.get_text(strip=True, separator='\n'))

@@ -29,7 +29,7 @@ class ChangeHandler(FileSystemEventHandler):
         if os.path.basename(event.src_path) in ignored_files:
             return
 
-        repo_path = '/home/kang/문서/bolg_scrap'  # 올바른 Git 저장소 경로
+        repo_path = '/home/ec2-user/blogScrapper'  # 올바른 Git 저장소 경로
         repo = git.Repo(repo_path)
 
         # 커밋 중 플래그 설정
@@ -54,7 +54,7 @@ class ChangeHandler(FileSystemEventHandler):
             self.is_committing = False
 
 if __name__ == "__main__":
-    path = '/home/kang/문서/bolg_scrap'  # 감지할 폴더
+    path = '/home/ec2-user/blogScrapper'  # 감지할 폴더
     event_handler = ChangeHandler()
     observer = Observer()
     observer.schedule(event_handler, path, recursive=True)

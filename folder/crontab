@@ -1,0 +1,4 @@
+40 00 * * 1-5 /home/ec2-user/blogScrapper/venv/bin/python /home/ec2-user/blogScrapper/folder/ChangeHandler.py
+41 00 * * 1-5 /home/ec2-user/blogScrapper/venv/bin/python /home/ec2-user/blogScrapper/folder/scrape_bog.py
+42 00 * * 1-5 pkill -f ChangeHandler.py
+
