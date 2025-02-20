@@ -9,6 +9,12 @@ class ChangeHandler(FileSystemEventHandler):
         self.is_committing = False  # 커밋 중인지 여부를 나타내는 플래그
 
     def on_created(self, event):
+        self.handle_event(event)
+
+    def on_modified(self, event):
+        self.handle_event(event)
+
+    def handle_event(self, event):
         if event.is_directory or self.is_committing:
             return
 
@@ -37,7 +43,7 @@ class ChangeHandler(FileSystemEventHandler):
         try:
             # 변경 사항 추가 및 커밋
             repo.git.add(A=True)
-            commit_message = f"Added: {os.path.basename(event.src_path)}"
+            commit_message = f"Updated: {os.path.basename(event.src_path)}"
             repo.index.commit(commit_message)
             print(f"Committed: {commit_message}")
 
