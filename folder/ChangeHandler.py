@@ -1,4 +1,5 @@
 import os
+import time
 import git
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -52,6 +53,9 @@ class ChangeHandler(FileSystemEventHandler):
             # 푸시 (upstream 설정 포함)
             repo.git.push('origin', 'main')  # 원격 브랜치 설정 포함
             print(f"Pushed: {commit_message}")
+
+            # 10분 대기
+            time.sleep(600)  # 10분 대기
 
         except Exception as e:
             print(f"Error occurred: {e}")
