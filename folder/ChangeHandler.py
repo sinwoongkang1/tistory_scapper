@@ -1,5 +1,4 @@
 import os
-import time
 import git
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -49,9 +48,7 @@ class ChangeHandler(FileSystemEventHandler):
         except Exception as e:
             print(f"Error occurred: {e}")
         finally:
-            # 커밋이 끝난 후 대기
-            time.sleep(600)  # 10분 대기
-            self.is_committing = False
+            self.is_committing = False  # 커밋이 끝난 후 플래그 해제
 
 if __name__ == "__main__":
     path = '/home/ec2-user/blogScrapper'  # 감지할 폴더
@@ -64,7 +61,7 @@ if __name__ == "__main__":
 
     try:
         while True:
-            time.sleep(1)
+            pass  # 무한 루프 대신 빈 루프 사용
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
